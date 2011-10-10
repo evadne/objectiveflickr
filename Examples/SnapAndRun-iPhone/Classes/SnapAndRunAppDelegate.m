@@ -164,7 +164,7 @@ NSString *SRCallbackURLBaseString = @"snapnrun://auth";
 - (void)flickrAPIRequest:(OFFlickrAPIRequest *)inRequest didCompleteWithResponse:(NSDictionary *)inResponseDictionary
 {    
     if (inRequest.sessionInfo == kCheckTokenStep) {
-		self.flickrUserName = [inResponseDictionary valueForKeyPath:@"user.username._text"];
+		self.flickrUserName = [[inResponseDictionary valueForKeyPath:@"user.username._text"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	}
 	
 	[activityIndicator stopAnimating];
